@@ -55,7 +55,7 @@ var newVariable = "Hello World!";
 
 console.log(newVariable);
 
-alert("The contents of newVariable are:" + newVariable);
+alert("The contents of newVariable are: " + newVariable);
 
 // 5. Predict what the following code will print (write it down), then try it.
 
@@ -91,14 +91,15 @@ console.log(9 & 10);
 
 // 7. What is the difference between == and ===? Give an example.
 
-// == is not strict where === is strict.
+console.log("== is not strict whereas === is strict when comparing data types. ");
 
-console.log("Integer '1' == character '1' but integer '1' !=== character '1'
-because they are of different data types, integer and character);
+//console.log("Integer '1' == character '1' but integer '1' !=== character '1'
+//because they are of different data types, integer and character");
 
 //--------------------//
 // Control structures //
 //--------------------//
+
 console.log("Control structures");
 
 // 1. Write an if statement to check if a year is a leap year and print it to
@@ -118,6 +119,7 @@ var result = 1;
 for (i = 1; i < n + 1; i++) {
   result = result * i;
 }
+
 console.log(result);
 
 
@@ -131,21 +133,17 @@ console.log("Functions");
 //    first or last position of the array.
 
 function  checkForNumber(arr, num) {
-    var endOfArray = arr.length;
-    var firstNumber = arr[0];
-    var lastNumber = arr[endOfArray -1];
+    var lastElement = arr.pop();
+    var firstElement = arr.shift();
+    console.log("Last element: " + lastElement);
+    console.log("First element: " + firstElement);
 
-    if (firstNumber === num) {
-        return true;
-    } else if (lastNumber === num) {
+    if (firstElement === num | lastElement === num) {
         return true;
     } else {
-        return false;
+        return false;`  `
     }
 }
-
-var numbers = [24,82,46,66,22];
-console.log(checkForNumber(numbers, 22));
 
 // NOTE: all these tests should eventually print true.
 console.log(checkForNumber([4, 2, 5, 3], 4) === true);
@@ -155,23 +153,24 @@ console.log(checkForNumber([4, 2, 5, 3], 13) === false);
 
 
 
+
 //-------------------------------------------//
 // Object-oriented programming in JavaScript //
 //-------------------------------------------//
 console.log("Object-oriented programming in JavaScript");
 
 // 1. Add methods to the following object to calculate the circumference
-//   and area.
+// and area.
 
 function Triangle(side) {
   this.side = side;
-  this.getCircumference() {
+  this.getCircumference = function() {
     return side * 3;
-  this.getArea() {
-    s = (side * 3)/2;
-    result = Math.sqrt(s-side)*(s-side)*(s-side);
-    return result;
   }
+  this.getArea = function() {
+    var s = (side * 3)/2;
+    var area = Math.sqrt(s * ((s-side)*(s-side)*(s-side)));
+    return area;
   }
 }
 
@@ -179,8 +178,8 @@ function Triangle(side) {
 // HINT: use the prototype
 
 var triangle = new Triangle(5);
-console.log("The perimeter for the triangle is " + triangle.getCircumference());
-console.log("The area for the triangle is " + triangle.getArea());
+console.log("The perimeter of the triangle is " + triangle.getCircumference());
+console.log("The area of the triangle is " + triangle.getArea());
 
 
 
@@ -192,7 +191,7 @@ console.log("Debugging and tools");
 // 1. Always use the developer tools.
 // 2. See 1.
 
-Console.log("I am not sure what you are looking for in this section?")
+Console.log("I am not sure what you are looking for in this debugging section?")
 
 
 
@@ -214,14 +213,14 @@ var day5 = 86;
 var total1 = day1 + day2 + day3 + day4 + day5;
 var average1 = total / 5;
 
-console.log("The average fice day forecast is" + average1);
+console.log("The average fice day forecast is " + average1);
 
 // 2. Solve the same problem as in (1) but store the temperatures in an array.
 
 var fiveDayForecast = [88,81,84,90,86];
 
 var total = 0;
-for (var i = 0, i < fiveDayForecast.length, i++) {
+for (var i = 0; i < fiveDayForecast.length; i++) {
   total += fiveDayForecast[i];
 }
 
@@ -260,7 +259,8 @@ console.log(daysOfWeek5.length);
 // 2. Is is possible to create an array with just the number 7 in it?
 //    How about 7 and 8?
 
-var newNumArray[7, 8];
+var newNumArray = [7];
+console.log(newNumArray);
 
 // 3. Which notation do you prefer: new Array() or []?
 
@@ -272,12 +272,13 @@ console.log("I prefer the new Array() notation although I have a habit of using 
 //    For more info see https://en.wikipedia.org/wiki/Fibonacci_number
 
 var fibo = [0,1];
-var elements = 25;
+var n = 25;
 
-for(i = 2, i < n +1, i++) {
-  fibo.push(fibo.[i -2] + fibo[i-1])
+for (var i=2; i<n; i++) {
+  fibo.push(fibo[i-2] + fibo[i-1]);
 }
 
+console.log(fibo);
 
 //-----------------//
 // Adding elements //
@@ -353,15 +354,16 @@ var arr = [[1, 2, 3],
            [4, 5, 6],
            [7, 8, 9]];
 
-var sumOfArray = 0;
-
-for (i = 0; i < arr.length; i++) {
-  var num = arr[i];
-  for (j = 0; j < num; j++) {
-  //sumOfArray = sumOfArray + num[i][j];
-  console.log(arr[i][j]);
+var arraySum = 0;
+for (var i = 0; i < arr.length; i++) {
+  //console.log(arr[i]);
+  for (var j = 0; j < arr[i].length; j++) {
+    //console.log(arr[i][j]);
+    arraySum += arr[i][j];
   }
 }
+
+console.log("The sum of the multidimensional array is: " + arraySum);
 
 //-----------------------------------------//
 // References for JavaScript array methods //
@@ -376,19 +378,51 @@ var negativeNumbers = [-3, -2, -1];
 
 // 1. Create a new array 'numbers' that contains all numbers above in order.
 
-var numbers = [-3, -2, -1, 0 1, 2 ,3];
+function combineTwoArrays(arr1, arr2) {
+  var numbers = [];
+  for (var i = 0; i < arr1.length; i++) {
+    numbers.push(arr1[i]);
+  }
+  for (var j = 0; j < arr2.length; j++) {
+    numbers.push(arr2[j]);
+  }
+  return numbers.sort(function(a, b){return a - b});
+}
+
+console.log(combineTwoArrays(positiveNumbers, negativeNumbers));
 
 // 2. Check if every number in the numbers array is less than 10 and print
 //    the result to the console.
 
-
+for (var i = 0; i < numbers.length; i++) {
+  if (numbers[i] < 10) {
+    console.log("The number " + numbers[i] + "is less than 10.")
+  } else {
+    console.log("The number " + numbers[i] + "is more than 10.")
+  }
+}
 
 // 3. Select all the nonnegative numbers from the numbers array and store them
 //    in a new array. Print the array to the console.
 
+var numbers = combineTwoArrays(positiveNumbers, negativeNumbers);
+var newNumbers = [];
+
+for (var i = 0; i < numbers.length; i++) {
+  if (numbers[i] > 0) {
+    newNumbers.push(numbers[i]);
+  }
+}
+
+console.log("The positive numbers are: " + newNumbers);
+
 // 4. Create a new array that contains all the numbers but then squared.
 
-
+var numbersSquared = [];
+for (var i = 0; i < numbers.length; i++) {
+  numbersSquared.push(numbers[i] * numbers[i]);
+}
+console.log(numbersSquared);
 
 </script>
 </head>
