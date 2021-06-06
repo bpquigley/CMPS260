@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 260: Module 2 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+// NOTE: You must implement the data structures using the prototype approach.
+//       This is not what the book uses, so you have to convert it.
+//       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+
+// NOTE: Please review the following links regularly:
+//       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+//       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+//       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+
+
+//---------//
+// Project //
+//---------//
+console.log("Project");
+
+// 1. Implement the stack data structure using the prototype.
+
+// 2. It is possible to use a stack to check if the number of parentheses in a
+//    string is balanced, meaning there are as many opening parentheses as
+//    closing ones. In addition, we can also make sure that each opening
+//    parenthesis precedes a closing parenthesis. Implement this algorithm.
+//    HINT: When encountering '(' push to the stack and when encountering ')'
+//    pop from the stack.
+
+function isBalanced(str) {
+  // check the parentheses in str
+}
+
+// 3. Write a simple test program that shows your implementation in the
+//    previous question works.
+
+// 4. Implement the queue data structure using the prototype.
+
+// 5. Create a queue that stores edibles, that can be either fruits or
+//    vegetables. Use the constructor below to create the edible and store a
+//    few of each kind in the queue (at least 3 of each).
+
+function Edible(name, isFruit) {
+  this.name = name;
+  this.isFruit = isFruit; // if not fruit, it must be a vegetable
+  this.toString = function() {
+    return "Edible: " + this.name + " Fruit: " + this.isFruit;
+  };
+}
+
+// ... put your code here ...
+
+// 6. Create two more queues: one for fruits and one for vegetables. For this
+//    question, only create them (and leave them empty).
+
+// 7. Dequeue all the elements from the edible queue and enqueue them in the
+//    appropriate queue, either for fruits or vegetables.
+
+// 8. Print the final contents to the console, showing that your code works.
+
+
+
+</script>
+</head>
+<body>
+  See console!
+</body>
+</html>
