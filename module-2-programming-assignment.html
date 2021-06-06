@@ -29,15 +29,25 @@ console.log("The stack data structure");
 function Stack() {
   var items = [];
 
-  push(element) {
-    this.items.push(element);
+  this.push = function(element) {
+    items.push(element);
   }
 
-/*
-  this.pop() {
-    return this.items.pop();
+  this.pop = function() {
+    return items.pop();
   }
-*/
+
+  this.size = function() {
+    return items.length;
+  }
+
+  this.isEmpty = function() {
+    return items.length === 0;
+  }
+
+  this.clear = function() {
+    items = [];
+  }
 }
 
 // 2. Write a simple test program that shows your stack works.
@@ -47,6 +57,8 @@ stack.push(5);
 stack.push(6);
 stack.push(10);
 
+console.log("The stack size is " + stack.size());
+console.log(stack.isEmpty());
 var stackItem = stack.pop();
 console.log(stackItem);
 
@@ -70,19 +82,81 @@ console.log("Solving problems using stacks");
 //    For example, if the number is 5 the remainder is 1 and the number in the
 //    next iteration should be 2 (5/2 rounded down).
 
-var num = prompt("Please enter a decimal number such as 10.4.");
 
+
+var num = prompt("Please enter a decimal number such as 10.4.")
+
+var rmdr;
 var result;
-while (count > 2) {
-  num
+
+while (num > 0) {
+  var rmdr = num%2;
+  console.log("Remainder " + rmdr);
+  num = Math.floor(num / 2);
+  console.log("The number is: " + num)
 }
+
+//-------------------------------//
+//        Tutors Code            //
+//-------------------------------//
+//while (num > 0) {
+//  var remainder = number % 2;
+//  console.log("Remainder: " + remainder);
+//  result = result + remainder;
+//  stack.push(remainder);
+//  number = Math.floor(number / 2);
+//  console.log("Number: " + number);
+//}
+
 
 // 2. The algorithm in (1) can be used to convert a decimal number to a binary
 //    number but there is one issue. What is the problem?
 
+
+
+
 // 3. Solve the problem in (2) using a stack.
+function Stack() {
+  var items = [];
 
+  this.push = function(element) {
+    items.push(element);
+  }
 
+  this.pop = function() {
+    return items.pop();
+  }
+
+  this.size = function() {
+    return items.length;
+  }
+
+  this.isEmpty = function() {
+    return items.length === 0;
+  }
+
+  this.clear = function() {
+    items = [];
+  }
+}
+
+var rmdr = new Stack();
+var num = 2; //prompt("Please enter a decimal number such as 10.4.")
+var result = '';
+
+while (num > 0) {
+  rmdr.push(num%2);
+  num = Math.floor(num / 2);
+  //console.log("The number is " + num);
+}
+
+while (rmdr.size() > 0) {
+  console.log("Size is " + rmdr.size());
+  result = result + rmdr.pop();
+  //console.log();
+}
+
+console.log("The result is: " + result);
 
 //--------------------------//
 // The queue data structure //
@@ -93,7 +167,11 @@ console.log("The queue data structure");
 //    where a stack is appropriate and one example where a queue is
 //    appropriate (that has not yet been discussed in class).
 
+Console.log("A stack is LIFO and a queue FIFO.");
+Console.log("FIFO would be suitable to inventory, such as food items with an expiration.
+The First items placed on the shelf should be the first items removed from the shelf.");
 
+Console.log("LIFO is suitable to ")
 
 //------------------//
 // Creating a queue //
@@ -106,9 +184,59 @@ console.log("Creating a queue");
 
 function Queue() {
   // properties and methods go here
-}
+  var count = 0;
+  var lowestCount = 0;
+  var items = {};
+
+  this.isEmpty = function() {
+    return count - lowestCount === 0;
+  }
+
+  this.enqueue = function(element) {
+    items[count] = element;
+    count++;
+  }
+
+  this.dequeue = function() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+      const result = items[lowestCount];
+      delete items[lowestCount];
+      lowestCount++;
+      return result;
+  }
+
+  this.peek = function() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return items[lowestCount];
+  }
+
+  this.size = function() {
+    return count - lowestCount;
+  }
+
+  this.clear = function() {
+    items = [];
+    count = 0;
+    lowestCount = 0;
+  }
+} //end of Queue object
 
 // 2. Write a simple test program that shows your queue works.
+var name1 = '';
+var name2 = '';
+var queue = new Queue();
+console.log(queue.isEmpty());
+queue.enqueue('Brian');
+queue.enqueue('Quigley');
+
+name1 = queue.dequeue();
+name2 = queue.dequeue();
+
+console.log(name1 + " " + name2);
 
 
 
@@ -128,30 +256,63 @@ function QueueElement(element, priority) {
 //    implementation does not use the prototype.
 
 function PriorityQueue() {
+  var count = 0;
+  var lowestCount = 0
   var items = [];
 
   this.enqueue = function(element, priority) {
-    // we need to create a queue element that stores the priority as well
-    var queueElement = new QueueElement(element, priority);
 
-    // insert into priority queue (difficult part)
-    // note that this should be a min priority queue, meaning a lower value
-    // gets priority over a higher value
-    // ...
+    var newQ = new QueueElement(element, priority);
+    var added = false;
+
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].priority > newQ.priority) {
+        items.splice(i, 0, newQ);
+        count++;
+        added = true;
+        break;
+      }
+    }
+    if (!added) {
+      items.push(newQ);
+      count++;
+    }
   }
 
-  // this is a helper function that is useful for printing
   this.print = function() {
     for (var i = 0; i < items.length; i++) {
       console.log(`${items[i].element} - ${items[i].priority}`);
     }
   };
 
-  // add the other methods as well
-  // ...
-}
+  this.isEmpty = function() {
+    return count - lowestCount === 0;
+  }
+
+  this.dequeue = function() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    const result = items[lowestCount];
+    delete items[lowestCount];
+    lowestCount++;
+    return result;
+  }
+} //end of PriorityQueue
+
 
 // 2. Write a simple test that makes sure the priority queue works as expected.
+
+var newqueue = new PriorityQueue();
+newqueue.enqueue('Pickles', 4);
+newqueue.enqueue('Tomatoes', 2);
+newqueue.enqueue('Beets', 1);
+newqueue.isEmpty();
+newqueue.print();
+console.log(newqueue.dequeue());
+console.log(newqueue.dequeue());
+
+
 
 
 
@@ -165,26 +326,58 @@ console.log("The circular queue - Hot Potato");
 //    before a participant is ejected from the game (the one that holds the
 //    potato). Note that this is effectively a simulation of the game.
 
+function pQueue() {
+  var count = 0;
+  var lowestCount = 0;
+  var items = [];
+
+  this.enqueue = function(element) {
+    items[count] = element;
+    count++;
+  }
+
+  this.dequeue = function() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+      const result = items[lowestCount];
+      delete items[lowestCount];
+      lowestCount++;
+      return result;
+  }
+
+  this.isEmpty = function() {
+    return count - lowestCount === 0;
+  }
+
+  this.size = function() {
+    return count - lowestCount;
+  }
+} //end of pQueue object
+
 function hotPotato(nameList, num) {
-  // create a queue to store the names
-  // ...
+  var newQueue = new pQueue();
+  var eliminatedList = [];
 
-  // add the names to the queue
-  // ...
+    for (var i = 0; i < nameList.length; i++) {
+      newQueue.enqueue(nameList[i]);
+      console.log(nameList[i]);
+    }
+    while (newQueue.size() > 1) {
+      for (var i = 0; i < num; i++){
+        newQueue.enqueue(newQueue.dequeue());
+      }
+    }
+    eliminatedList.push(newQueue.dequeue());
 
-  // while there is more that one name in the queue
-  // dequeue and enqueue a name num times
-  // ...
-  // then dequeue one more time, which is the participant that is ejected
-  // ...
-  // /while (end of while loop)
+    return {eliminated: eliminatedList, winner: newQueue.dequeue()};
+  }
 
-  // the person that remains in the queue wins
-  // ...
-}
+var names = ['Brian', 'Jaime', 'Sophia', 'Logan', 'Cooper'];
+var results = new hotPotato(names, 7);
 
-// 2. Test the code in (1).
-
+results.eliminated.forEach(name => {console.log('${name} was eliminated.')});
+console.log('The winner is: ${results.winner}');
 
 
 </script>
