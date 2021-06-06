@@ -364,13 +364,15 @@ function hotPotato(nameList, num) {
       console.log(nameList[i]);
     }
     while (newQueue.size() > 1) {
-      for (var i = 0; i < num; i++){
+      for (var i = 0; i < num; i++) {
         newQueue.enqueue(newQueue.dequeue());
       }
+      eliminatedList.push(newQueue.dequeue());
     }
-    eliminatedList.push(newQueue.dequeue());
-
-    return {eliminated: eliminatedList, winner: newQueue.dequeue()};
+    return {
+        eliminated: eliminatedList,
+        winner: newQueue.dequeue()
+    };
   }
 
 var names = ['Brian', 'Jaime', 'Sophia', 'Logan', 'Cooper'];
