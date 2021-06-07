@@ -24,6 +24,32 @@ console.log("Project");
 
 // 1. Implement the stack data structure using the prototype.
 
+function Queue () {
+  this.items = [];
+  this.count = 0;
+}
+
+Queue.prototype.enqueue = function(element) {
+  this.items.push(element);
+}
+
+Queue.prototype.dequeue = function() {
+  if (this.isEmpty()) {
+    return undefined;
+  }
+  else {
+    this.items.pop();
+  }
+}
+
+Queue.prototype.size = function() {
+  return this.items.length;
+}
+
+Queue.prototype.isEmpty = function() {
+  return (this.items.length === 0);
+}
+
 // 2. It is possible to use a stack to check if the number of parentheses in a
 //    string is balanced, meaning there are as many opening parentheses as
 //    closing ones. In addition, we can also make sure that each opening
@@ -33,10 +59,32 @@ console.log("Project");
 
 function isBalanced(str) {
   // check the parentheses in str
+  const stack = new Queue();
+  const brackets = "()";
+
+  for (i = 0; i < str.length; i++) {
+    if (str[i] === "(") {
+      stack.enqueue(str[i]);
+    } else if (str[i] === ")") {
+      stack.dequeue();
+      }
+  }
+  if (stack.size() === 0) {
+    console.log("The brackets are balanced.");
+    return true;
+  }
+  else {
+    console.log("The brackets are NOT balanced.");
+    return false;
+  }
 }
 
 // 3. Write a simple test program that shows your implementation in the
 //    previous question works.
+
+var code = 'this.prototype.size = function() {return this.items.length(;}';
+
+var lineOfCode = isBalanced(code);
 
 // 4. Implement the queue data structure using the prototype.
 
@@ -52,10 +100,76 @@ function Edible(name, isFruit) {
   };
 }
 
-// ... put your code here ...
+function Queue () {
+  this.items = [];
+  this.count = 0;
+}
+
+Queue.prototype.enqueue = function(name, isFruit) {
+  var newQ = new Edible(name, isFruit);
+  var added = false;
+
+  this.items.push(newQ);
+  this.count++;
+}
+
+Queue.prototype.dequeue = function() {
+  if (this.isEmpty()) {
+    return undefined;
+  }
+  else {
+    this.items.shift();
+  }
+}
+
+Queue.prototype.size = function() {
+  return this.items.length;
+}
+
+Queue.prototype.isEmpty = function() {
+  return (this.items.length === 0);
+}
+
+var edibleQueue = new Queue();
+
+edibleQueue.enqueue('Broccoli', false);
+edibleQueue.enqueue('Apples', true);
+edibleQueue.enqueue('Peas', false);
+edibleQueue.enqueue('Oranges', true);
+var foodItem = edibleQueue.dequeue();
+//console.log(foodItem.toString());
+//console.log(foodItem);
+console.log(edibleQueue.items);
+console.log(edibleQueue.count);
+
+
 
 // 6. Create two more queues: one for fruits and one for vegetables. For this
 //    question, only create them (and leave them empty).
+
+//psuedocode...
+/*
+var fruitQueue = new Queue();
+
+
+if (isFruit === true) {
+  this.items.push();
+}
+else
+{
+  console.log("Not a fruit.");
+  break;
+};
+
+
+var vegetableQueue = new Queue();
+
+//psuedocode...
+if (isFruit === false) {
+
+}
+*/
+
 
 // 7. Dequeue all the elements from the edible queue and enqueue them in the
 //    appropriate queue, either for fruits or vegetables.
