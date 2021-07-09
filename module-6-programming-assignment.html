@@ -24,14 +24,88 @@ console.log("The sorting algorithms");
 
 // 1. Implement the ArrayList constructor.
 
+function arrayList () {
+  var array = [];
+
+  this.insert  = function(item) {
+    array.push(item);
+  }
+
+  this.toString = function() {
+    return array.join();
+  }
+
+  this.bubbleSort = function() {
+    var length = array.length;
+    for (var i=0; i<length; i++) {
+      for (var j=0; j<length; j++) {
+        if (array[j] > array[j+1]) {
+          swap(array, j, j+1);
+        }
+      }
+    }
+  }
+
+  var swap = function(array, index1, index2) {
+    var aux = array[index1];
+    array[index1] = array[index2];
+    array[index2] = aux;
+  };
+
+this.selectionSort = function() {
+  var length = array.length, indexMin;
+  for (var i=0; i<length-1; i++) {
+    indexMin = i;
+    for (var j=i; j<length; j++) {
+      if (array[indexMin]>array[j]) {
+        indexMin = j;
+      }
+    }
+    if (i !== indexMin) {
+      swap(i, indexMin);
+    }
+  }
+};
+
+this.sequentialSearch = function(item) {
+  for (var i=0; i<array.length; i++) {
+    if (item === array[i]) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+}
+
 // 2. Implement the createNonSortedArray(size) function from the book.
 
+function createNonSortedArray(size) {
+  var array = new arrayList();
+  for (var i = size; i > 0; i--) {
+    array.insert(i);
+  }
+  return array;
+}
+
+
 // 3. Implement Bubble Sort inside the ArrayList constructor and test your code.
+console.log("Bubble Sort:")
+
+var newList = new createNonSortedArray(5);
+console.log(newList.toString());
+newList.bubbleSort();
+console.log(newList.toString());
 
 // 4. Implement Selection Sort inside the ArrayList constructor and test your
 //    code.
 
+console.log("Selection Sort");
 
+var newList2 = new createNonSortedArray(6);
+console.log(newList2.toString());
+newList2.selectionSort();
+console.log(newList2.toString());
 
 //----------------------//
 // Searching algorithms //
@@ -40,6 +114,18 @@ console.log("Searching algorithms");
 
 // 1. Implement the sequential search inside the ArrayList constructor and test
 //    your code.
+console.log("Sequential Search");
+
+var newList3 = createNonSortedArray(7);
+if (newList3.sequentialSearch(3)) {
+  console.log("The nunber was found.");
+}
+else {
+  console.log("The number was NOT found.");
+}
+
+
+
 
 
 
