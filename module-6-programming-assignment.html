@@ -22,6 +22,8 @@
 //---------//
 console.log("Project");
 
+//new nnote
+
 // 1. Implement the ArrayList using the prototype.
 
 function ArrayList() {
@@ -54,10 +56,9 @@ ArrayList.prototype.bubbleSort = function() {
     //console.log("i = " +i);
     for (var j=0; j<length-1; j++) {
       //console.log("j = " + j);
-      if (array[j] > array[j+1]) {
-        //console.log("True");
-        swap(array, j, j+1);
-        //console.log("The length is now " + length);
+      if (this.items[j] > this.items[j+1]) {
+        console.log("True");
+        swap(this.items, j, j+1);
       }
     }
   }
@@ -69,7 +70,7 @@ swap = function(array, index1, index2) {
   array[index2] = aux;
 }
 
-var array = new createNonSortedRandomArray(6);
+var array = new createNonSortedRandomArray(13);
 console.log(array.toString());
 array.bubbleSort();
 console.log(array.toString());
