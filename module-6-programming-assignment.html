@@ -16,7 +16,6 @@
 //       https://it.pointpark.edu/tutorials/implementation-vs-interface/
 
 
-
 //---------//
 // Project //
 //---------//
@@ -70,23 +69,25 @@ swap = function(array, index1, index2) {
   array[index2] = aux;
 }
 
-var array = new createNonSortedRandomArray(13);
-console.log(array.toString());
-array.bubbleSort();
-console.log(array.toString());
+var array1 = new createNonSortedRandomArray(13);
+console.log(array1.toString());
+array1.bubbleSort();
+console.log(array1.toString());
 
 
 // 3. Implement the Quick Sort algorithm and test your code with the function
 //    you wrote for (2).
 
+/*
+
 ArrayList.protoype.quickSort = function() {
-  quick(array, 0, array.length - 1);
+  quick(this.array, 0, this.array.length - 1);
 };
 
 quick = function(array, left, right) {
   var index;
 
-  if (array.lenth > 1) {
+  if (array.length > 1) {
 
     index = partition(array, left, right);
 
@@ -106,7 +107,7 @@ partition = function(array, left, right) {
   j = right;
 
   while (i <= j) {
-    while (array[i] < pivot)
+    while (array[i] < pivot) {
       i++;
   }
 
@@ -114,22 +115,58 @@ partition = function(array, left, right) {
     j--;
   }
 
-  if ( <= j) {
+  if (i <= j) {
     swap(array, i, j);
     i++;
     j--;
   }
-
+}
 return i;
 
 };
 
+var array2 = new createNonSortedRandomArray(33);
+console.log(array2.toString());
+array2.quickSort();
+console.log(array2.toString());
 
 // 4. Implement searching using the prototype.
 
 
 
 // 5. Implement the binary search algorithm and test your code.
+
+ArrayList.prototype.binarySearch = function(item) {
+ this.quickSort();
+
+ var low = 0;
+ var high = this.length - 1;
+ var middle;
+ var element;
+
+ while (low <= high) {
+   mid = Math.floor((low + high) / 2);
+   element = array[mid];
+   if (element < item) {
+     low = mid + 1;
+   } else if (element > item) {
+     high = mid - 1;
+   } else {
+     return mid;
+   }
+ }
+return -1;
+};
+
+
+var array3 = new createNonSortedRandomArray(89);
+if (array3.binarySearch(44)) {
+  console.log("The number was found.");
+} else {
+  console.log("The number was not found.");
+}
+
+*/
 
 // The following set of steps come from an earlier homework.
 // The following text is from the all the Amendments in the Bill of Rights.
@@ -144,8 +181,12 @@ var textArray = text.split(" ");
 // 6. Use sorting and searching to find out whether the word 'president'
 //    appears in the amendments. You should use the code you wrote above.
 
+
+
 // 7. Use sorting and searching to find out whether the word 'state' appears
 //    in the amendments. You should use the code you wrote above.
+
+
 
 // 8. Use sorting and searching to find out whether the word 'country' appears
 //    in the amendments. You should use the code you wrote above.
