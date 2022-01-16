@@ -79,9 +79,9 @@ console.log(array1.toString());
 //    you wrote for (2).
 
 
-ArrayList.protoype.quickSort = function() {
-  quick(this.array, 0, this.array.length - 1);
-};
+ArrayList.prototype.quickSort = function() {
+  quick(this.items, 0, this.items.length - 1);
+}
 
 quick = function(array, left, right) {
   var index;
@@ -134,7 +134,7 @@ console.log(array2.toString());
 
 
 // 5. Implement the binary search algorithm and test your code.
-/*
+
 
 ArrayList.prototype.binarySearch = function(item) {
  this.quickSort();
@@ -166,7 +166,6 @@ if (array3.binarySearch(44)) {
   console.log("The number was not found.");
 }
 
-*/
 
 // The following set of steps come from an earlier homework.
 // The following text is from the all the Amendments in the Bill of Rights.
@@ -190,7 +189,6 @@ var textArray = text.split(" ");
 
 // 8. Use sorting and searching to find out whether the word 'country' appears
 //    in the amendments. You should use the code you wrote above.
-
 
 
 </script>
