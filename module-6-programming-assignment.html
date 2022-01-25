@@ -167,7 +167,7 @@ return -1;
 console.log("");
 console.log("Binary Search");
 var array3 = new createNonSortedRandomArray(89);
-if (array3.binarySearch(44)) {
+if (array3.binarySearch(189)) {
   console.log("The number was found.");
 } else {
   console.log("The number was not found.");
@@ -186,10 +186,6 @@ let textArray = text.split(" ");
 
 // 6. Use sorting and searching to find out whether the word 'president'
 //    appears in the amendments. You should use the code you wrote above.
-
-//console.log("size of text array is " + textArray.length);
-
-
 let constArray = new ArrayList();
 let searchTerm1 = "president";
 
@@ -202,24 +198,51 @@ for (var i=0; i < textArray.length; i++) {
   //console.log(i);
 }
 
-console.log(constArray.size);
-
-
-/*
+//console.log("The array size is:" +constArray.size());
 
 if (constArray.binarySearch(searchTerm1)) {
-  console.log("The word " + searchTerm1 + "was found.")
+  console.log("The word " + searchTerm1 + " was found.")
 } else {
-  console.log("The word " + searchTerm1 + "was not found.")
+  console.log("The word " + searchTerm1 + " was not found.")
 }
 
 // 7. Use sorting and searching to find out whether the word 'state' appears
 //    in the amendments. You should use the code you wrote above.
+let searchTerm2 = "state";
 
+console.log("");
+console.log("Search for the word " + searchTerm2 + ".");
 
+if (constArray.binarySearch(searchTerm2)) {
+  console.log("The word " + searchTerm2 + " was found.")
+} else {
+  console.log("The word " + searchTerm2 + " was not found.")
+}
 
 // 8. Use sorting and searching to find out whether the word 'country' appears
 //    in the amendments. You should use the code you wrote above.
+
+let searchTerm3 = "country";
+
+console.log("");
+console.log("Search for the word " + searchTerm3 + ".");
+
+if (constArray.binarySearch(searchTerm3)) {
+  console.log("The word " + searchTerm3 + " was found.")
+} else {
+  console.log("The word " + searchTerm3 + " was not found.")
+}
+
+let searchTerm4 = "hockey";
+
+console.log("");
+console.log("Search for the word " + searchTerm4 + ".");
+
+if (constArray.binarySearch(searchTerm4)) {
+  console.log("The word " + searchTerm4 + " was found.")
+} else {
+  console.log("The word " + searchTerm4 + " was not found.")
+}
 
 // --------------- //
 // Experimentation //
