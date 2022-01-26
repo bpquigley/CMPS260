@@ -147,7 +147,7 @@ ArrayList.prototype.binarySearch = function(item) {
 
  var low = 0;
  var high = this.length - 1;
- var middle;
+ var mid;
  var element;
 
  while (low <= high) {
@@ -192,11 +192,14 @@ let searchTerm1 = "president";
 console.log("");
 console.log("Search for the word " + searchTerm1 + ".");
 
-
 for (var i=0; i < textArray.length; i++) {
   constArray.insert(textArray[i]);
   //console.log(i);
 }
+
+constArray.quickSort();
+//console.log(constArray.toString());
+
 
 //console.log("The array size is:" +constArray.size());
 
