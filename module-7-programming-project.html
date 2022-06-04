@@ -24,21 +24,58 @@ console.log("Project");
 
 // 1. Implement factorial using a recursive function and test your code.
 
+function factorial(num){
+  return factorial((num - 1) * num);
+}
+
+
+console.log(factorial(12));
+
 // 2. Implement a function that returns the complete fibonacci sequence in an
 //    array for a given number.
+
+function fibSeq(num) {
+  fibArray = [];
+  fibArray = fibSeq(num - 1) + (num - 2);
+
+  return fibArray;
+}
 
 // 3. Implement finding the longest common subsequence using dynamic
 //    programming. Test your code.
 
+
+
 // 4. Solve the problem of summing all the numbers in an array using
 //    imperative style.
+
+var sumArray = function(array) {
+  let sum = 0;
+
+  for (var i=0; i<array.length; i++) {
+    sum = sum + array[i];
+  }
+
+return sum;
+}
+
+let impArray = sumArray([3, 5, 6, 10, 8]);
+console.log("The sum is " + impArray);
+
+
 
 // 5. Solve the problem of summing all the numbers in an array using
 //    functional style.
 
+
+
+
+
 // 6. Solve problem 14 of Project Euler: https://projecteuler.net/problem=14
 //    Note: This may be a bit challenging. Try to get as far as you can.
 //          Instead of one million you could use a smaller number for testing.
+
+
 
 
 
